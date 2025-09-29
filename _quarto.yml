@@ -1,0 +1,23 @@
+project:
+  type: website
+  output-dir: docs/
+
+
+website:
+  title: "ACIC2026 Data Challenge"
+  navbar:
+    background: "#C5050C"
+    foreground: "#FFFFFF"
+
+    
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+execute:
+  cache: true
+code-annotations: hover 
+code-overflow: wrap
+lightbox: true
