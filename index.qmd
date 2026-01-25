@@ -18,5 +18,5 @@ In addition, a key goal this year is to create a more inclusive competition by l
 To that end our datasets will be reasonably small (likely no more than 5000 observations). 
 Moreover, for those who prefer more curated approaches to causal inference we will provide opportunities to make submissions only for a core subset of datasets or estimands.
 
-We will release the data on January 20, 2026. Submissions will be due on April 20, 2026.
+We will release the data on February 1, 2026. Submissions will be due on April 20, 2026.
 We will announce the results at ACIC in May!
