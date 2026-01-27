@@ -49,9 +49,9 @@ For each $z \in \{B, C, D, E\}$ and covariate vector $\boldsymbol{\mathbf{x}},$ 
 $$
 \textrm{CATE}(\boldsymbol{\mathbf{x}}, z) = \mathbb{E}[Y(z) - Y(A) \vert \boldsymbol{\mathbf{X}} = \boldsymbol{\mathbf{x}}].
 $$
-We are also interested in the effect of each treatment in $\{B, C, D, E\}$ (relative to $A$) within the sub-population defined by $X_{2} = .$
+We are also interested in the effect of each treatment in $\{B, C, D, E\}$ (relative to $A$) within the sub-population defined by $X_{12} \in \{0,1\}.$
 $$
-\textrm{GATE}(z) = \mathbb{E}[Y(z) - Y(A) \vert X_{2} = ]
+\textrm{GATE}(z,x) = \mathbb{E}[Y(z) - Y(A) \vert X_{12} = x]
 $$
 
 Finally, we are interested in the overall population-level average treatment effect
@@ -63,11 +63,19 @@ In addition to estimating these average effect functions, we will be interested 
 Specifically, we wish to compute
 
   * For each observed covariate vector $\boldsymbol{\mathbf{x}}$, $\textrm{argmax}_{z} \textrm{CATE}(\boldsymbol{\mathbf{x}}_{i}, z).$
-  * Within the subgroup defined by $X_{2} = $, $\textrm{argmax}_{z} \textrm{GATE}(z).$
+  * For each value of $X_{12} \in \{0,1\},$ $\textrm{argmax}_{z} \textrm{GATE}(z,x).$
   * Across the whole population $\textrm{argmax}_{z} \textrm{ATE}(z).$
 
+## Registration & Competition Timing
 
-## Submission Instructions
+To participate in the competition at least one participant of every team needs to be a member of the Society for Causal Inference (see [here](https://sci-info.org/membership/)  for details on how to become a member of SCI). 
+Please register for the challenge **by April 1, 2026** using this [form](https://docs.google.com/forms/d/e/1FAIpQLSe9I5Co3ngnBD-snMdbW8f27ngbezh-t_gPI44ii-66cRwcbg/viewform?usp=sharing&ouid=105756037255954774746). 
+Registration will provide you access to the data and allow us to assign you a team number (up to 5 submissions per team).
+
+
+
+
+## Preparing Your Submission
 
 For each dataset, you will submit a separate CSV file containing estimates and, in the case of the $\textrm{CATE}, \textrm{GATE},$ and $\textrm{PATE}$ evaluations, uncertainty intervals. 
 Refer to the following sections for details about how to name and organize these files.
@@ -89,19 +97,20 @@ These outputs should be arranged in "long" format with the following five named 
   * "U95": the upper bound for a 95% uncertainty interval for the corresponding CATE evaluation
   
 The CSV file should be named `"CATE_dataID_teamID_submissionID.csv"`.
-If the dataset contains $n$ observation, this file should contain $4n + 1$ rows, where the first row contains the header/column names.
+If the dataset contains $n$ observations, this file should contain $4n + 1$ rows, where the first row contains the header/column names.
 
 ### $\textrm{GATE}$ Evaluations
 
-For each dataset, submit a single CSV file containing point estimates and uncertainty intervals for the average treatment effect within subgroups defined by $X_{2} = .$
+For each dataset, submit a single CSV file containing point estimates and uncertainty intervals for the average treatment effect within subgroups defined by $X_{12} \in \{0,1\}$
 These outputs should be arranged in "long" format with the following named columns
 
   * "z": treatment arm (i.e., "B", "C", "D", or "E") (character)
-  * "Estimate": the point estimate for $\textrm{GATE}(\textrm{z}).$
+  * "x": the value of $X_{12}$ (i.e., 0 or 1) (numeric)
+  * "Estimate": the point estimate for $\textrm{GATE}(\textrm{z}, x).$
   * "L95": the lower bound for a 95% uncertainty interval for the corresponding GATE evaluation
   * "U95": the upper bound for a 95% uncertainty interval for the corresponding GATE evaluation
 
-The CSV file should be named `"GATE_dataID_teamID_submissionID.csv"` and should only have 5 rows (including the header/column names).
+The CSV file should be named `"GATE_dataID_teamID_submissionID.csv"` and should only have 9 rows (including the header/column names).
 
 ### $\textrm{PATE}$ Evaluations
 
@@ -109,9 +118,9 @@ For each dataset, submit a single CSV file containing point estimates and uncert
 These outputs should be arranged in "long" format with the following columns
 
   * "z": treatment arm (i.e., "B", "C", "D", or "E") (character)
-  * "Estimate": the point estimate for $\textrm{GATE}(\textrm{z}).$
-  * "L95": the lower bound for a 95% uncertainty interval for the corresponding GATE evaluation
-  * "U95": the upper bound for a 95% uncertainty interval for the corresponding GATE evaluation
+  * "Estimate": the point estimate for $\textrm{GATE}(\textrm{z}).$ (numeric)
+  * "L95": the lower bound for a 95% uncertainty interval for the corresponding GATE evaluation (numeric)
+  * "U95": the upper bound for a 95% uncertainty interval for the corresponding GATE evaluation (numeric)
 
 The CSV file should be named `"GATE_dataID_teamID_submissionID.csv"` and should only have 5 rows (including the header/column names).
 
@@ -128,16 +137,17 @@ The dataset contains $n$ observations, the submission file should have $n+1$ row
 
 ### Best $\textrm{GATE}$
 
-For each dataset, submit a single CSV file identifying the treatment arm that is most efficacious relative to the business as usual/control condition $A$ within subgroups of the population defined $X_{2} = .$
+For each dataset, submit a single CSV file identifying the treatment arm that is most efficacious relative to the business as usual/control condition $A$ within subgroups of the population defined by $X_{12}.$
 These outputs should be arranged in "long" format with the following columns:
 
-  * "best_z": treatment arm $z$ (i.e., "B", "C", "D", or "E") that maximizes $\textrm{GATE}(z)$ (character)
+  * "x": the value of $X_{12}$ (i.e., 0 or 1) (numeric)
+  * "best_z": treatment arm $z$ (i.e., "B", "C", "D", or "E") that maximizes $\textrm{GATE}(z,x)$ (character)
 
 The CSV file should be named `"BEST_GATE_dataID_teamID_submission_ID.csv"` and should include 2 rows (including the header/column names).
 
 ### Best $\textrm{PATE}$
 
-For each dataset, submit a single CSV file identifying the treatment arm that is most efficacious relative to the business as usual/control condition $A$ within subgroups of the population defined $X_{2} = .$
+For each dataset, submit a single CSV file identifying the treatment arm that is most efficacious relative to the business as usual/control condition $A$ across the whole population.
 These outputs should be arranged in "long" format with the following columns:
 
   * "best_z": treatment arm $z$ (i.e., "B", "C", "D", or "E") that maximizes $\textrm{PATE}(z)$ (character)
