@@ -136,12 +136,14 @@ window.Quarto = {
   <li><a href="#registration-competition-timing" id="toc-registration-competition-timing" class="nav-link" data-scroll-target="#registration-competition-timing">Registration &amp; Competition Timing</a></li>
   <li><a href="#preparing-your-submission" id="toc-preparing-your-submission" class="nav-link" data-scroll-target="#preparing-your-submission">Preparing Your Submission</a>
   <ul class="collapse">
-  <li><a href="#textrmcate-evaluations" id="toc-textrmcate-evaluations" class="nav-link" data-scroll-target="#textrmcate-evaluations"><span class="math inline">\(\textrm{CATE}\)</span> Evaluations</a></li>
-  <li><a href="#textrmgate-evaluations" id="toc-textrmgate-evaluations" class="nav-link" data-scroll-target="#textrmgate-evaluations"><span class="math inline">\(\textrm{GATE}\)</span> Evaluations</a></li>
+  <li><a href="#textrmicate-evaluations" id="toc-textrmicate-evaluations" class="nav-link" data-scroll-target="#textrmicate-evaluations"><span class="math inline">\(\textrm{iCATE}\)</span> Evaluations</a></li>
+  <li><a href="#textrmscate-evaluations" id="toc-textrmscate-evaluations" class="nav-link" data-scroll-target="#textrmscate-evaluations"><span class="math inline">\(\textrm{sCATE}\)</span> Evaluations</a></li>
+  <li><a href="#textrmsubcate-evaluations" id="toc-textrmsubcate-evaluations" class="nav-link" data-scroll-target="#textrmsubcate-evaluations"><span class="math inline">\(\textrm{subCATE}\)</span> Evaluations</a></li>
   <li><a href="#textrmpate-evaluations" id="toc-textrmpate-evaluations" class="nav-link" data-scroll-target="#textrmpate-evaluations"><span class="math inline">\(\textrm{PATE}\)</span> Evaluations</a></li>
-  <li><a href="#best-textrmcate" id="toc-best-textrmcate" class="nav-link" data-scroll-target="#best-textrmcate">Best <span class="math inline">\(\textrm{CATE}\)</span></a></li>
-  <li><a href="#best-textrmgate" id="toc-best-textrmgate" class="nav-link" data-scroll-target="#best-textrmgate">Best <span class="math inline">\(\textrm{GATE}\)</span></a></li>
-  <li><a href="#best-textrmpate" id="toc-best-textrmpate" class="nav-link" data-scroll-target="#best-textrmpate">Best <span class="math inline">\(\textrm{PATE}\)</span></a></li>
+  <li><a href="#best-textrmicate" id="toc-best-textrmicate" class="nav-link" data-scroll-target="#best-textrmicate">Best <span class="math inline">\(\textrm{iCATE}\)</span></a></li>
+  <li><a href="#best-textrmscate" id="toc-best-textrmscate" class="nav-link" data-scroll-target="#best-textrmscate">Best <span class="math inline">\(\textrm{sCATE}\)</span></a></li>
+  <li><a href="#best-textrmsubcate" id="toc-best-textrmsubcate" class="nav-link" data-scroll-target="#best-textrmsubcate">Best <span class="math inline">\(\textrm{subCATE}\)</span></a></li>
+  <li><a href="#best-textrmpcate" id="toc-best-textrmpcate" class="nav-link" data-scroll-target="#best-textrmpcate">Best <span class="math inline">\(\textrm{pCATE}\)</span></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -184,17 +186,16 @@ window.Quarto = {
 </section>
 <section id="target-estimands" class="level3">
 <h3 class="anchored" data-anchor-id="target-estimands">Target Estimands</h3>
-<p>Formally, each individual in the population has five potential outcomes <span class="math inline">\(Y_{i}(A), Y_{i}(B), Y_{i}(C), Y_{i}(D), Y_{i}(E)\)</span>, out of which exactly one is observed: <span class="math inline">\(y_{i} = Y_{i}(z_{i}).\)</span> We will be interested in estimating four types of average treatment effects. First, we would like to estimate for each observed individual in the sample <span class="math inline">\(i = 1, \ldots, n,\)</span> their <em>individual-level conditional average treatment effect</em> (iCATE) for each treatment, which we define as <span class="math display">\[
+<p>Formally, each individual in the population has five potential outcomes <span class="math inline">\(Y_{i}(A), Y_{i}(B), Y_{i}(C), Y_{i}(D), Y_{i}(E)\)</span>, out of which exactly one is observed: <span class="math inline">\(y_{i} = Y_{i}(z_{i}).\)</span> We will be interested in estimating four types of average treatment effects. First, we would like to estimate for each observed individual in the sample <span class="math inline">\(i = 1, \ldots, n,\)</span> their individual-level conditional average treatment effect for each <span class="math inline">\(z \in \{B, C, D, E\}\)</span>: <span class="math display">\[
 \textrm{iCATE}(\boldsymbol{\mathbf{x}}_{i}, z) = \mathbb{E}[Y_{i}(z) - Y_{i}(A) \vert \boldsymbol{\mathbf{X}} = \boldsymbol{\mathbf{x}}_{i}].
 \]</span> The second type of effect is the sample average conditional average treatment effect for each <span class="math inline">\(z \in \{B, C, D ,E\}.\)</span> <span class="math display">\[
-\textrm{sCATE}(z) = n^{-1}\sum_{i = 1}^{n}{\mathbb{E}[Y_{i}(z) - Y_{i}(A) \vert \boldsymbol{\mathbf{X}} = \boldsymbol{\mathbf{x}}_{i}]} = n^{-1}\sum_{i = 1}^{n}{\textrm{iCATE}(\boldsymbol{\mathbf{x}}_{i}, z)}.
+\textrm{sCATE}(z) = n^{-1}\sum_{i = 1}^{n}{\mathbb{E}[Y_{i}(z) - Y_{i}(A) \vert \boldsymbol{\mathbf{X}} = \boldsymbol{\mathbf{x}}_{i}]}.
 \]</span></p>
 <p>The third type of effect is the sample average conditional treatment effect within subgroups defined by the value of <span class="math inline">\(X_{12} \in \{0,1\}\)</span> for each <span class="math inline">\(z \in \{B,C,D,E\}\)</span>: <span class="math display">\[
 \textrm{subCATE}(z,x) = n^{-1}\sum_{i=1}^{n}{\mathbb{E}[Y_{i}(z) - Y_{i}(A) \vert \boldsymbol{\mathbf{X}} = \boldsymbol{\mathbf{x}}_{i}] \times \mathbf{1}(x_{i,12} = x)}.
+\]</span> The fourth effect is the population conditional average treatment effect for each <span class="math inline">\(z \in \{B,C,D,E\}\)</span>: <span class="math display">\[
+\textrm{pCATE}(z) = N^{-1}\sum_{i = 1}^{N}{\mathbb{E}[Y_{i}(z) - Y_{i}(A) \vert \boldsymbol{\mathbf{X}} = \boldsymbol{\mathbf{x}}_{i}]}.
 \]</span></p>
-<p>The fourth of effect is the population conditional average treatment effect for each <span class="math inline">\(z \in \{B,C,D,E\}\)</span>: <span class="math display">\[
-\textrm{pCATE}(z) = N^{-1}\sum_{i = 1}^{N}{\mathbb{E}[Y_{i}(z) - Y_{i}(A) \vert \boldsymbol{\mathbf{X}}.
-\]</span> Note that the <span class="math inline">\(\textrm{sCATE}'\)</span>s (resp. <span class="math inline">\(\textrm{pCATE}\)</span>’s) are the averages of the <span class="math inline">\(\textrm{iCATE}\)</span>’s within the observed sample (resp. full population).</p>
 <p>In addition to computing point estimates and pointwise uncertainty intervals for each of these effects, we are interested in determining which treatment is most effective relative to A, where positive treatment effect values are considered better/more effective than negative values. Specifically, we wish to compute the most effective treatment for</p>
 <ul>
 <li>Each individual <span class="math inline">\(i = 1, \ldots, n\)</span> in the sample: <span class="math inline">\(\boldsymbol{\mathbf{x}}\)</span>, <span class="math inline">\(\textrm{argmax}_{z} \textrm{iCATE}(\boldsymbol{\mathbf{x}}_{i}, z).\)</span></li>
@@ -216,64 +217,83 @@ window.Quarto = {
 <li><code>teamID</code>: a unique ID number assigned to each submission team. Team numbers will be assigned no later than April 1, 2026 by the organizers.</li>
 <li><code>submissionID</code>: if you enter multiple submissions, you will need to include a numeric id so that we can tell your submissions apart. See below for more details about multiple submissions.</li>
 </ul>
-<section id="textrmcate-evaluations" class="level3">
-<h3 class="anchored" data-anchor-id="textrmcate-evaluations"><span class="math inline">\(\textrm{CATE}\)</span> Evaluations</h3>
-<p>For each dataset, submit a single CSV file containing point estimates and uncertainty intervals for the conditional average treatment effect functions evaluated at each observed covariate vector. These outputs should be arranged in “long” format with the following five named columns:</p>
+<section id="textrmicate-evaluations" class="level3">
+<h3 class="anchored" data-anchor-id="textrmicate-evaluations"><span class="math inline">\(\textrm{iCATE}\)</span> Evaluations</h3>
+<p>For each dataset, submit a single CSV file containing point estimates and uncertainty intervals for the individual conditional average treatment effect functions evaluated at each observed covariate vector. These outputs should be arranged in “long” format with the following five named columns:</p>
 <ul>
 <li>“ID”: the observation identifier (numeric)</li>
 <li>“z”: treatment arm (i.e., “B”, “C”, “D”, or “E”) (character)</li>
-<li>“Estimate”: the point estimate for <span class="math inline">\(\textrm{CATE}(\boldsymbol{\mathbf{x}}_{\textrm{ID}}, \textrm{z}).\)</span></li>
+<li>“Estimate”: the point estimate for <span class="math inline">\(\textrm{iCATE}(\boldsymbol{\mathbf{x}}_{\textrm{ID}}, \textrm{z}).\)</span></li>
 <li>“L95”: the lower bound for a 95% uncertainty interval for the corresponding CATE evaluation</li>
 <li>“U95”: the upper bound for a 95% uncertainty interval for the corresponding CATE evaluation</li>
 </ul>
-<p>The CSV file should be named <code>"CATE_dataID_teamID_submissionID.csv"</code>. If the dataset contains <span class="math inline">\(n\)</span> observations, this file should contain <span class="math inline">\(4n + 1\)</span> rows, where the first row contains the header/column names.</p>
+<p>The CSV file should be named <code>"iCATE_dataID_teamID_submissionID.csv"</code>. If the dataset contains <span class="math inline">\(n\)</span> observations, this file should contain <span class="math inline">\(4n + 1\)</span> rows, where the first row contains the header/column names.</p>
 </section>
-<section id="textrmgate-evaluations" class="level3">
-<h3 class="anchored" data-anchor-id="textrmgate-evaluations"><span class="math inline">\(\textrm{GATE}\)</span> Evaluations</h3>
+<section id="textrmscate-evaluations" class="level3">
+<h3 class="anchored" data-anchor-id="textrmscate-evaluations"><span class="math inline">\(\textrm{sCATE}\)</span> Evaluations</h3>
+<p>For each dataset, submit a single CSV file containing point estimates and uncertainty intervals for the sample average conditional average treatment effect functions. These outputs should be arranged in “long” format with the following four named columns:</p>
+<ul>
+<li>“z”: treatment arm (i.e., “B”, “C”, “D”, or “E”) (character).</li>
+<li>“Estimate”: the point estimate for <span class="math inline">\(\textrm{sCATE}(\textrm{z})\)</span> (numeric).</li>
+<li>“L95”: the lower bound for a 95% uncertainty interval for the corresponding CATE evaluation (numeric).</li>
+<li>“U95”: the upper bound for a 95% uncertainty interval for the corresponding CATE evaluation (numeric).</li>
+</ul>
+<p>The CSV file should be named <code>"sCATE_dataID_teamID_submissionID.csv"</code> and should contain 5 rows (including the header/column names).</p>
+</section>
+<section id="textrmsubcate-evaluations" class="level3">
+<h3 class="anchored" data-anchor-id="textrmsubcate-evaluations"><span class="math inline">\(\textrm{subCATE}\)</span> Evaluations</h3>
 <p>For each dataset, submit a single CSV file containing point estimates and uncertainty intervals for the average treatment effect within subgroups defined by <span class="math inline">\(X_{12} \in \{0,1\}\)</span> These outputs should be arranged in “long” format with the following named columns</p>
 <ul>
 <li>“z”: treatment arm (i.e., “B”, “C”, “D”, or “E”) (character)</li>
 <li>“x”: the value of <span class="math inline">\(X_{12}\)</span> (i.e., 0 or 1) (numeric)</li>
-<li>“Estimate”: the point estimate for <span class="math inline">\(\textrm{GATE}(\textrm{z}, x).\)</span></li>
-<li>“L95”: the lower bound for a 95% uncertainty interval for the corresponding GATE evaluation</li>
-<li>“U95”: the upper bound for a 95% uncertainty interval for the corresponding GATE evaluation</li>
+<li>“Estimate”: the point estimate for <span class="math inline">\(\textrm{subCATE}(\textrm{z}, x)\)</span> (numeric).</li>
+<li>“L95”: the lower bound for a 95% uncertainty interval for the corresponding GATE evaluation (numeric).</li>
+<li>“U95”: the upper bound for a 95% uncertainty interval for the corresponding GATE evaluation (numeric).</li>
 </ul>
-<p>The CSV file should be named <code>"GATE_dataID_teamID_submissionID.csv"</code> and should only have 9 rows (including the header/column names).</p>
+<p>The CSV file should be named <code>"subCATE_dataID_teamID_submissionID.csv"</code> and should only have 9 rows (including the header/column names).</p>
 </section>
 <section id="textrmpate-evaluations" class="level3">
 <h3 class="anchored" data-anchor-id="textrmpate-evaluations"><span class="math inline">\(\textrm{PATE}\)</span> Evaluations</h3>
-<p>For each dataset, submit a single CSV file containing point estimates and uncertainty intervals for the population average treatment effect. These outputs should be arranged in “long” format with the following columns</p>
+<p>For each dataset, submit a single CSV file containing point estimates and uncertainty intervals for the population average treatment effect. These outputs should be arranged into the following columns</p>
 <ul>
 <li>“z”: treatment arm (i.e., “B”, “C”, “D”, or “E”) (character)</li>
 <li>“Estimate”: the point estimate for <span class="math inline">\(\textrm{GATE}(\textrm{z}).\)</span> (numeric)</li>
 <li>“L95”: the lower bound for a 95% uncertainty interval for the corresponding GATE evaluation (numeric)</li>
 <li>“U95”: the upper bound for a 95% uncertainty interval for the corresponding GATE evaluation (numeric)</li>
 </ul>
-<p>The CSV file should be named <code>"GATE_dataID_teamID_submissionID.csv"</code> and should only have 5 rows (including the header/column names).</p>
+<p>The CSV file should be named <code>"PATE_dataID_teamID_submissionID.csv"</code> and should only have 5 rows (including the header/column names).</p>
 </section>
-<section id="best-textrmcate" class="level3">
-<h3 class="anchored" data-anchor-id="best-textrmcate">Best <span class="math inline">\(\textrm{CATE}\)</span></h3>
-<p>For each dataset, submit a single CSV file identifying the treatment arm that is most efficacious relative to the business as usual/control condition <span class="math inline">\(A\)</span> within subgroups of the population defined by each observed covariate vector <span class="math inline">\(\boldsymbol{\mathbf{x}}_{i}.\)</span> These outputs should be arranged in “long” format with the following columns:</p>
+<section id="best-textrmicate" class="level3">
+<h3 class="anchored" data-anchor-id="best-textrmicate">Best <span class="math inline">\(\textrm{iCATE}\)</span></h3>
+<p>For each dataset, submit a single CSV file identifying the treatment arm that is most effective, on average, relative to <span class="math inline">\(A\)</span> for each observed individual These outputs should be arranged in “long” format with the following columns:</p>
 <ul>
 <li>“ID”: the observation identifier (numeric)</li>
-<li>“best_z”: treatment arm <span class="math inline">\(z\)</span> (i.e., “B”, “C”, “D”, or “E”) that maximizes <span class="math inline">\(\textrm{CATE}(\boldsymbol{\mathbf{x}}_{\textrm{ID}}, z)\)</span> (character)</li>
+<li>“best_z”: treatment arm <span class="math inline">\(z\)</span> (i.e., “B”, “C”, “D”, or “E”) that maximizes <span class="math inline">\(\textrm{iCATE}(\boldsymbol{\mathbf{x}}_{\textrm{ID}}, z)\)</span> (character)</li>
 </ul>
-<p>The CSV file should be named <code>"BEST_CATE_dataID_teamID_submission_ID.csv"</code>. The dataset contains <span class="math inline">\(n\)</span> observations, the submission file should have <span class="math inline">\(n+1\)</span> rows (including the header/column names).</p>
+<p>The CSV file should be named <code>"BEST_iCATE_dataID_teamID_submissionID.csv"</code>. The dataset contains <span class="math inline">\(n\)</span> observations, the submission file should have <span class="math inline">\(n+1\)</span> rows (including the header/column names).</p>
 </section>
-<section id="best-textrmgate" class="level3">
-<h3 class="anchored" data-anchor-id="best-textrmgate">Best <span class="math inline">\(\textrm{GATE}\)</span></h3>
-<p>For each dataset, submit a single CSV file identifying the treatment arm that is most efficacious relative to the business as usual/control condition <span class="math inline">\(A\)</span> within subgroups of the population defined by <span class="math inline">\(X_{12}.\)</span> These outputs should be arranged in “long” format with the following columns:</p>
+<section id="best-textrmscate" class="level3">
+<h3 class="anchored" data-anchor-id="best-textrmscate">Best <span class="math inline">\(\textrm{sCATE}\)</span></h3>
+<p>For each dataset, submit a single CSV file identifying the treatment arm that is most effective relative to A on average across the observed sample. These outputs should be arranged into the following columns:</p>
 <ul>
-<li>“x”: the value of <span class="math inline">\(X_{12}\)</span> (i.e., 0 or 1) (numeric)</li>
-<li>“best_z”: treatment arm <span class="math inline">\(z\)</span> (i.e., “B”, “C”, “D”, or “E”) that maximizes <span class="math inline">\(\textrm{GATE}(z,x)\)</span> (character)</li>
+<li>“best_z”: treatment arm <span class="math inline">\(z\)</span> (i.e., “B”, “C”, “D”, “E”) that maximizes <span class="math inline">\(\textrm{sCATE}(z)\)</span> (character).</li>
 </ul>
-<p>The CSV file should be named <code>"BEST_GATE_dataID_teamID_submission_ID.csv"</code> and should include 2 rows (including the header/column names).</p>
+<p>The CSV file should named <code>"BEST_sCATE_dataID_teamID_submissionID.csv"</code> and should contain 2 rows (including the header/column names).</p>
 </section>
-<section id="best-textrmpate" class="level3">
-<h3 class="anchored" data-anchor-id="best-textrmpate">Best <span class="math inline">\(\textrm{PATE}\)</span></h3>
-<p>For each dataset, submit a single CSV file identifying the treatment arm that is most efficacious relative to the business as usual/control condition <span class="math inline">\(A\)</span> across the whole population. These outputs should be arranged in “long” format with the following columns:</p>
+<section id="best-textrmsubcate" class="level3">
+<h3 class="anchored" data-anchor-id="best-textrmsubcate">Best <span class="math inline">\(\textrm{subCATE}\)</span></h3>
+<p>For each dataset, submit a single CSV file identifying the treatment arm that is most effective relative to <span class="math inline">\(A\)</span> within subgroups of the sample defined by <span class="math inline">\(X_{12}.\)</span> These outputs should be arranged in “long” format with the following columns:</p>
 <ul>
-<li>“best_z”: treatment arm <span class="math inline">\(z\)</span> (i.e., “B”, “C”, “D”, or “E”) that maximizes <span class="math inline">\(\textrm{PATE}(z)\)</span> (character)</li>
+<li>“x”: the value of <span class="math inline">\(X_{12}\)</span> (i.e., 0 or 1) (numeric).</li>
+<li>“best_z”: treatment arm <span class="math inline">\(z\)</span> (i.e., “B”, “C”, “D”, or “E”) that maximizes <span class="math inline">\(\textrm{subCATE}(z,x)\)</span> (character).</li>
+</ul>
+<p>The CSV file should be named <code>"BEST_subCATE_dataID_teamID_submission_ID.csv"</code> and should include 2 rows (including the header/column names).</p>
+</section>
+<section id="best-textrmpcate" class="level3">
+<h3 class="anchored" data-anchor-id="best-textrmpcate">Best <span class="math inline">\(\textrm{pCATE}\)</span></h3>
+<p>For each dataset, submit a single CSV file identifying the treatment arm that is most effective relative to <span class="math inline">\(A\)</span> averaged across the whole population. These outputs should be arranged in “long” format with the following columns:</p>
+<ul>
+<li>“best_z”: treatment arm <span class="math inline">\(z\)</span> (i.e., “B”, “C”, “D”, or “E”) that maximizes <span class="math inline">\(\textrm{pCATE}(z)\)</span> (character)</li>
 </ul>
 <p>The CSV file should be named <code>"BEST_PATE_dataID_teamID_submission_ID.csv"</code> and should include 2 rows (including the header/column names).</p>
 <p>Examples of different submission files are available <a href="">here</a>.</p>
