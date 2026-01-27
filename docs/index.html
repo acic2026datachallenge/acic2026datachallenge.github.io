@@ -176,28 +176,31 @@ window.Quarto = {
 </section>
 <section id="data-background" class="level2">
 <h2 class="anchored" data-anchor-id="data-background">Data Background</h2>
-<p>For the Data Challenge, we have created 9000 different datasets, each of which represents a simple random sample from different, much larger populations. These populations differ not only in terms of the treatment assignment probabilities but also in terms of the size of the treatment effects and the complexity/heterogeneity/functional form of the (conditional) average treatment effect functions.</p>
-<p>Each dataset contains <span class="math inline">\(n\)</span> triplets <span class="math inline">\((\boldsymbol{\mathbf{x}}_{i}, z_{i}, y_{i})\)</span> of $p = $ covariates <span class="math inline">\(\boldsymbol{\mathbf{X}}\)</span>, treatment indicator <span class="math inline">\(Z \in \{A, B, C, D, E\},\)</span> and outcome <span class="math inline">\(Y.\)</span> You may assume that these triplets were drawn independently and uniformly at random from a much larger population in which treatment was assigned completely at random. So, standard assumptions of ignorability and overlap are satisfied. The Stable Unit Treatment Value Assumption (SUTVA) can also be assumed to be satisfied.</p>
+<p>For the Data Challenge, we have created 9000 different datasets, each of which was drawn from a distinct large population. These populations differ not only in terms of the treatment assignment probabilities but also in terms of the size of the treatment effects and the complexity/heterogeneity/functional form of the (conditional) average treatment effect functions. However, you may assume that treatment was assigned completely at random within each population. So, standard assumptions of ignorability and overlap are satisfied as is the Stable Unit Treatment Value Assumption (SUTVA). Across all populations, you may assume that <span class="math inline">\(A\)</span> represents the control or “business as usual” condition and that <span class="math inline">\(B, C, D, E\)</span> represent different treatment arms.</p>
+<p>Each dataset contains <span class="math inline">\(n\)</span> triplets <span class="math inline">\((\boldsymbol{\mathbf{x}}_{i}, z_{i}, y_{i})\)</span> of $p = $ covariates <span class="math inline">\(\boldsymbol{\mathbf{X}}\)</span>, treatment indicator <span class="math inline">\(Z \in \{A, B, C, D, E\},\)</span> and outcome <span class="math inline">\(Y.\)</span> You may assume that these triplets were drawn from a much larger population of size <span class="math inline">\(N \gg n.\)</span></p>
 <section id="covariates" class="level3">
 <h3 class="anchored" data-anchor-id="covariates">Covariates</h3>
 <p>There are continuous, binary, and nominal covariates. You may assume that the distributions of the covariates are the same across all populations considered in this challenge.</p>
 </section>
 <section id="target-estimands" class="level3">
 <h3 class="anchored" data-anchor-id="target-estimands">Target Estimands</h3>
-<p>Across all populations, you may assume that <span class="math inline">\(A\)</span> represents the control or “business as usual” condition and that <span class="math inline">\(B, C, D, E\)</span> represent different treatment arms. We will be interested in estimating the average effect of each treatment relative to <span class="math inline">\(A\)</span> at three levels: within subgroups defined by all the covariates, within subgroups defined by a single, binary covariate, and the overall population level. We will also be interested in determining which treatment is the most efficacious relative to <span class="math inline">\(A\)</span> at each level, where you may assume that positive treatment effects are considered better than negative effects.</p>
-<p>Formally, each individual in the population has five potential outcomes <span class="math inline">\(Y(A), Y(B), Y(C), Y(D), Y(E)\)</span>, out of which exactly one is observed: <span class="math inline">\(y = Y(Z).\)</span> For each <span class="math inline">\(z \in \{B, C, D, E\}\)</span> and covariate vector <span class="math inline">\(\boldsymbol{\mathbf{x}},\)</span> the conditional average treatment effect function is defined as <span class="math display">\[
-\textrm{CATE}(\boldsymbol{\mathbf{x}}, z) = \mathbb{E}[Y(z) - Y(A) \vert \boldsymbol{\mathbf{X}} = \boldsymbol{\mathbf{x}}].
-\]</span> We are also interested in the effect of each treatment in <span class="math inline">\(\{B, C, D, E\}\)</span> (relative to <span class="math inline">\(A\)</span>) within the sub-population defined by <span class="math inline">\(X_{12} \in \{0,1\}.\)</span> <span class="math display">\[
-\textrm{GATE}(z,x) = \mathbb{E}[Y(z) - Y(A) \vert X_{12} = x]
+<p>Formally, each individual in the population has five potential outcomes <span class="math inline">\(Y_{i}(A), Y_{i}(B), Y_{i}(C), Y_{i}(D), Y_{i}(E)\)</span>, out of which exactly one is observed: <span class="math inline">\(y_{i} = Y_{i}(z_{i}).\)</span> We will be interested in estimating four types of average treatment effects. First, we would like to estimate for each observed individual in the sample <span class="math inline">\(i = 1, \ldots, n,\)</span> their <em>individual-level conditional average treatment effect</em> (iCATE) for each treatment, which we define as <span class="math display">\[
+\textrm{iCATE}(\boldsymbol{\mathbf{x}}_{i}, z) = \mathbb{E}[Y_{i}(z) - Y_{i}(A) \vert \boldsymbol{\mathbf{X}} = \boldsymbol{\mathbf{x}}_{i}].
+\]</span> The second type of effect is the sample average conditional average treatment effect for each <span class="math inline">\(z \in \{B, C, D ,E\}.\)</span> <span class="math display">\[
+\textrm{sCATE}(z) = n^{-1}\sum_{i = 1}^{n}{\mathbb{E}[Y_{i}(z) - Y_{i}(A) \vert \boldsymbol{\mathbf{X}} = \boldsymbol{\mathbf{x}}_{i}]} = n^{-1}\sum_{i = 1}^{n}{\textrm{iCATE}(\boldsymbol{\mathbf{x}}_{i}, z)}.
 \]</span></p>
-<p>Finally, we are interested in the overall population-level average treatment effect <span class="math display">\[
-\textrm{PATE}(z) = \mathbb{E}[Y(z) - Y(A)]
+<p>The third type of effect is the sample average conditional treatment effect within subgroups defined by the value of <span class="math inline">\(X_{12} \in \{0,1\}\)</span> for each <span class="math inline">\(z \in \{B,C,D,E\}\)</span>: <span class="math display">\[
+\textrm{subCATE}(z,x) = n^{-1}\sum_{i=1}^{n}{\mathbb{E}[Y_{i}(z) - Y_{i}(A) \vert \boldsymbol{\mathbf{X}} = \boldsymbol{\mathbf{x}}_{i}] \times \mathbf{1}(x_{i,12} = x)}.
 \]</span></p>
-<p>In addition to estimating these average effect functions, we will be interested in determining which treatment in <span class="math inline">\(\{B, C, D, E\}\)</span> has the largest effect at all three levels. Specifically, we wish to compute</p>
+<p>The fourth of effect is the population conditional average treatment effect for each <span class="math inline">\(z \in \{B,C,D,E\}\)</span>: <span class="math display">\[
+\textrm{pCATE}(z) = N^{-1}\sum_{i = 1}^{N}{\mathbb{E}[Y_{i}(z) - Y_{i}(A) \vert \boldsymbol{\mathbf{X}}.
+\]</span> Note that the <span class="math inline">\(\textrm{sCATE}'\)</span>s (resp. <span class="math inline">\(\textrm{pCATE}\)</span>’s) are the averages of the <span class="math inline">\(\textrm{iCATE}\)</span>’s within the observed sample (resp. full population).</p>
+<p>In addition to computing point estimates and pointwise uncertainty intervals for each of these effects, we are interested in determining which treatment is most effective relative to A, where positive treatment effect values are considered better/more effective than negative values. Specifically, we wish to compute the most effective treatment for</p>
 <ul>
-<li>For each observed covariate vector <span class="math inline">\(\boldsymbol{\mathbf{x}}\)</span>, <span class="math inline">\(\textrm{argmax}_{z} \textrm{CATE}(\boldsymbol{\mathbf{x}}_{i}, z).\)</span></li>
-<li>For each value of <span class="math inline">\(X_{12} \in \{0,1\},\)</span> <span class="math inline">\(\textrm{argmax}_{z} \textrm{GATE}(z,x).\)</span></li>
-<li>Across the whole population <span class="math inline">\(\textrm{argmax}_{z} \textrm{ATE}(z).\)</span></li>
+<li>Each individual <span class="math inline">\(i = 1, \ldots, n\)</span> in the sample: <span class="math inline">\(\boldsymbol{\mathbf{x}}\)</span>, <span class="math inline">\(\textrm{argmax}_{z} \textrm{iCATE}(\boldsymbol{\mathbf{x}}_{i}, z).\)</span></li>
+<li>On average, across the observed sample:<span class="math inline">\(\textrm{argmax}_{z} \textrm{sCATE}(z)\)</span></li>
+<li>On average, across the observed sample, within each subgroup defined by<span class="math inline">\(X_{12} \in \{0,1\}:\)</span> <span class="math inline">\(\textrm{argmax}_{z} \textrm{subCATE}(z,x).\)</span></li>
+<li>On average, across the whole population: <span class="math inline">\(\textrm{argmax}_{z} \textrm{pCATE}(z).\)</span></li>
 </ul>
 </section>
 </section>
