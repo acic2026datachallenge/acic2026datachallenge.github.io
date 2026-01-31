@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -36,7 +36,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-d6bf66eab951e3e2facc2c9e15467c3e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -144,7 +144,9 @@ window.Quarto = {
   <li><a href="#best-textrmscate" id="toc-best-textrmscate" class="nav-link" data-scroll-target="#best-textrmscate">Best <span class="math inline">\(\textrm{sCATE}\)</span></a></li>
   <li><a href="#best-textrmsubcate" id="toc-best-textrmsubcate" class="nav-link" data-scroll-target="#best-textrmsubcate">Best <span class="math inline">\(\textrm{subCATE}\)</span></a></li>
   <li><a href="#best-textrmpcate" id="toc-best-textrmpcate" class="nav-link" data-scroll-target="#best-textrmpcate">Best <span class="math inline">\(\textrm{pCATE}\)</span></a></li>
+  <li><a href="#multiple-submissions" id="toc-multiple-submissions" class="nav-link" data-scroll-target="#multiple-submissions">Multiple Submissions</a></li>
   </ul></li>
+  <li><a href="#questions-contact" id="toc-questions-contact" class="nav-link" data-scroll-target="#questions-contact">Questions &amp; Contact</a></li>
   </ul>
 </nav>
     </div>
@@ -172,57 +174,63 @@ window.Quarto = {
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>After a multi-year hiatus, we are excited to announce the return of the ACIC Data Challenge. This year the challenge will focus on the complications that arise in situations with multiple treatments. This will help us to understand how causal inference approaches handle the competing demands of settings with a wide variety of estimands. What’s the best approach to avoiding overconfidence in situations involving multiple, dependent comparisons? Can the same method yield strong results for both ATEs and subgroup effects? What are the tradeoffs between accurately estimating the effects of different treatments versus determining which of those treatments is most efficacious? Do effect rankings suggest a different approach than accurate effect estimates? We hope to address questions like these and more!</p>
-<p>In addition, a key goal this year is to create a more inclusive competition by lowering the barriers to entry with regard to computing power and level of automation. To that end our datasets will be reasonably small (likely no more than 5000 observations). Moreover, for those who prefer more curated approaches to causal inference we will provide opportunities to make submissions only for a core subset of datasets or estimands.</p>
-<p>We will release the data on February 1, 2026. Submissions will be due on April 20, 2026. We will announce the results at ACIC in May!</p>
+<p>After a multiyear hiatus, we are excited to announce the return of the ACIC Data Challenge. This year the challenge will focus on the complications that arise in situations with multiple treatments. This will help us to understand how causal inference approaches handle the competing demands of settings with a wide variety of estimands. What’s the best approach to avoiding overconfidence in situations involving multiple, dependent comparisons? Can the same method yield strong results for both ATEs and subgroup effects? What are the tradeoffs between accurately estimating the effects of different treatments versus determining which of those treatments is most efficacious? We hope to address questions like these and more!</p>
+<p>In addition, a key goal this year is to create a more inclusive competition by lowering the barriers to entry with regard to computing power and level of automation. To that end, our datasets will all be reasonably small and we provide an optional submission track for only 18 representative datasets.</p>
+<p>Submissions will be due on April 20, 2026. We will announce the results at ACIC in May!</p>
 </section>
 <section id="data-background" class="level2">
 <h2 class="anchored" data-anchor-id="data-background">Data Background</h2>
-<p>For the Data Challenge, we have created 9000 different datasets, each of which was drawn from a distinct large population. These populations differ not only in terms of the treatment assignment probabilities but also in terms of the size of the treatment effects and the complexity/heterogeneity/functional form of the (conditional) average treatment effect functions. However, you may assume that treatment was assigned completely at random within each population. So, standard assumptions of ignorability and overlap are satisfied as is the Stable Unit Treatment Value Assumption (SUTVA). Across all populations, you may assume that <span class="math inline">\(A\)</span> represents the control or “business as usual” condition and that <span class="math inline">\(B, C, D, E\)</span> represent different treatment arms.</p>
-<p>Each dataset contains <span class="math inline">\(n\)</span> triplets <span class="math inline">\((\boldsymbol{\mathbf{x}}_{i}, z_{i}, y_{i})\)</span> of $p = $ covariates <span class="math inline">\(\boldsymbol{\mathbf{X}}\)</span>, treatment indicator <span class="math inline">\(Z \in \{A, B, C, D, E\},\)</span> and outcome <span class="math inline">\(Y.\)</span> You may assume that these triplets were drawn from a much larger population of size <span class="math inline">\(N \gg n.\)</span></p>
+<p>For the Data Challenge, we have created 9000 different datasets, each of which was drawn from a distinct large population. These populations differ not only in terms of the treatment assignment probabilities but also in terms of the size of the treatment effects and the complexity/heterogeneity/functional form of the (conditional) average treatment effect functions. However, you may assume that treatment was assigned completely at random within each population. So, standard assumptions of ignorability and overlap are satisfied. You may also assume that Stable Unit Treatment Value Assumption (SUTVA) is satisfied. Across all populations, you may assume that <span class="math inline">\(a\)</span> represents the control or “business as usual” condition and that <span class="math inline">\(b, c, d, e\)</span> represent different treatment arms.</p>
+<p>Each dataset contains <span class="math inline">\(n\)</span> triplets <span class="math inline">\((\boldsymbol{\mathbf{x}}_{i}, z_{i}, y_{i})\)</span> of $p = $ covariates <span class="math inline">\(\boldsymbol{\mathbf{X}}\)</span>, treatment indicator <span class="math inline">\(Z \in \{a,b,c,d,e\},\)</span> and outcome <span class="math inline">\(Y.\)</span> You may assume that these triplets were drawn from a much larger population of size <span class="math inline">\(N \gg n.\)</span></p>
 <section id="covariates" class="level3">
 <h3 class="anchored" data-anchor-id="covariates">Covariates</h3>
 <p>There are continuous, binary, and nominal covariates. You may assume that the distributions of the covariates are the same across all populations considered in this challenge.</p>
 </section>
 <section id="target-estimands" class="level3">
 <h3 class="anchored" data-anchor-id="target-estimands">Target Estimands</h3>
-<p>Formally, each individual in the population has five potential outcomes <span class="math inline">\(Y_{i}(A), Y_{i}(B), Y_{i}(C), Y_{i}(D), Y_{i}(E)\)</span>, out of which exactly one is observed: <span class="math inline">\(y_{i} = Y_{i}(z_{i}).\)</span> We will be interested in estimating four types of average treatment effects. First, we would like to estimate for each observed individual in the sample <span class="math inline">\(i = 1, \ldots, n,\)</span> their individual-level conditional average treatment effect for each <span class="math inline">\(z \in \{B, C, D, E\}\)</span>: <span class="math display">\[
-\textrm{iCATE}(\boldsymbol{\mathbf{x}}_{i}, z) = \mathbb{E}[Y_{i}(z) - Y_{i}(A) \vert \boldsymbol{\mathbf{X}} = \boldsymbol{\mathbf{x}}_{i}].
-\]</span> The second type of effect is the sample average conditional average treatment effect for each <span class="math inline">\(z \in \{B, C, D ,E\}.\)</span> <span class="math display">\[
-\textrm{sCATE}(z) = n^{-1}\sum_{i = 1}^{n}{\mathbb{E}[Y_{i}(z) - Y_{i}(A) \vert \boldsymbol{\mathbf{X}} = \boldsymbol{\mathbf{x}}_{i}]}.
+<p>Formally, each individual in the population has five potential outcomes <span class="math inline">\(Y_{i}(a), Y_{i}(b), Y_{i}(c), Y_{i}(d), Y_{i}(e)\)</span>, out of which exactly one is observed: <span class="math inline">\(y_{i} = Y_{i}(z_{i}).\)</span> We will be interested in estimating four types of average treatment effects. First, we would like to estimate for each observed individual in the sample <span class="math inline">\(i = 1, \ldots, n,\)</span> their individual-level conditional average treatment effect for each <span class="math inline">\(z \in \{b,c,d,e\}\)</span>: <span class="math display">\[
+\textrm{iCATE}(\boldsymbol{\mathbf{x}}_{i}, z) = \mathbb{E}[Y_{i}(z) - Y_{i}(a) \vert \boldsymbol{\mathbf{X}} = \boldsymbol{\mathbf{x}}_{i}].
+\]</span> The second type of effect is the sample-level conditional average treatment effect for each <span class="math inline">\(z \in \{b,c,d,e\}.\)</span> <span class="math display">\[
+\textrm{sCATE}(z) = n^{-1}\sum_{i = 1}^{n}{\mathbb{E}[Y_{i}(z) - Y_{i}(a) \vert \boldsymbol{\mathbf{X}} = \boldsymbol{\mathbf{x}}_{i}]}.
 \]</span></p>
-<p>The third type of effect is the sample average conditional treatment effect within subgroups defined by the value of <span class="math inline">\(X_{12} \in \{0,1\}\)</span> for each <span class="math inline">\(z \in \{B,C,D,E\}\)</span>: <span class="math display">\[
-\textrm{subCATE}(z,x) = n^{-1}\sum_{i=1}^{n}{\mathbb{E}[Y_{i}(z) - Y_{i}(A) \vert \boldsymbol{\mathbf{X}} = \boldsymbol{\mathbf{x}}_{i}] \times \mathbf{1}(x_{i,12} = x)}.
-\]</span> The fourth effect is the population conditional average treatment effect for each <span class="math inline">\(z \in \{B,C,D,E\}\)</span>: <span class="math display">\[
-\textrm{pCATE}(z) = N^{-1}\sum_{i = 1}^{N}{\mathbb{E}[Y_{i}(z) - Y_{i}(A) \vert \boldsymbol{\mathbf{X}} = \boldsymbol{\mathbf{x}}_{i}]}.
+<p>The third type of effect is the subgroup-specific sample-level conditional average treatment effect within subgroups defined by the value of <span class="math inline">\(X_{12} \in \{0,1\}\)</span> for each <span class="math inline">\(z \in \{B,C,D,E\}\)</span>: <span class="math display">\[
+\textrm{subCATE}(z,x) = n^{-1}\sum_{i=1}^{n}{\mathbb{E}[Y_{i}(z) - Y_{i}(a) \vert \boldsymbol{\mathbf{X}} = \boldsymbol{\mathbf{x}}_{i}] \times \mathbf{1}(x_{i,12} = x)}.
+\]</span> The fourth effect is the population average treatment effect for each <span class="math inline">\(z \in \{B,C,D,E\}\)</span>: <span class="math display">\[
+\textrm{PATE}(z) = N^{-1}\sum_{i = 1}^{N}{Y_{i}(z) - Y_{i}(a)}.
 \]</span></p>
-<p>In addition to computing point estimates and pointwise uncertainty intervals for each of these effects, we are interested in determining which treatment is most effective relative to A, where positive treatment effect values are considered better/more effective than negative values. Specifically, we wish to compute the most effective treatment for</p>
+<p>In addition to computing point estimates and pointwise uncertainty intervals for each of these effects, we are interested in determining which treatment is most effective relative to <span class="math inline">\(a\)</span>, where positive treatment effect values are considered better/more effective than negative values. Specifically, we wish to compute the most effective treatment for</p>
 <ul>
 <li>Each individual <span class="math inline">\(i = 1, \ldots, n\)</span> in the sample: <span class="math inline">\(\boldsymbol{\mathbf{x}}\)</span>, <span class="math inline">\(\textrm{argmax}_{z} \textrm{iCATE}(\boldsymbol{\mathbf{x}}_{i}, z).\)</span></li>
 <li>On average, across the observed sample:<span class="math inline">\(\textrm{argmax}_{z} \textrm{sCATE}(z)\)</span></li>
 <li>On average, across the observed sample, within each subgroup defined by<span class="math inline">\(X_{12} \in \{0,1\}:\)</span> <span class="math inline">\(\textrm{argmax}_{z} \textrm{subCATE}(z,x).\)</span></li>
-<li>On average, across the whole population: <span class="math inline">\(\textrm{argmax}_{z} \textrm{pCATE}(z).\)</span></li>
+<li>On average, across the whole population: <span class="math inline">\(\textrm{argmax}_{z} \textrm{PATE}(z).\)</span></li>
 </ul>
 </section>
 </section>
 <section id="registration-competition-timing" class="level2">
 <h2 class="anchored" data-anchor-id="registration-competition-timing">Registration &amp; Competition Timing</h2>
 <p>To participate in the competition at least one participant of every team needs to be a member of the Society for Causal Inference (see <a href="https://sci-info.org/membership/">here</a> for details on how to become a member of SCI). Please register for the challenge <strong>by April 1, 2026</strong> using this <a href="https://docs.google.com/forms/d/e/1FAIpQLSe9I5Co3ngnBD-snMdbW8f27ngbezh-t_gPI44ii-66cRwcbg/viewform?usp=sharing&amp;ouid=105756037255954774746">form</a>. Registration will provide you access to the data and allow us to assign you a team number (up to 5 submissions per team).</p>
+<p>We will host two submission tracks:</p>
+<ul>
+<li>Curated: this track focuses on 18 datasets that are representative of the challenges created for this competition</li>
+<li>The Works: Submit results for all 9000 datasets.</li>
+</ul>
 </section>
 <section id="preparing-your-submission" class="level2">
 <h2 class="anchored" data-anchor-id="preparing-your-submission">Preparing Your Submission</h2>
-<p>For each dataset, you will submit a separate CSV file containing estimates and, in the case of the <span class="math inline">\(\textrm{CATE}, \textrm{GATE},\)</span> and <span class="math inline">\(\textrm{PATE}\)</span> evaluations, uncertainty intervals. Refer to the following sections for details about how to name and organize these files. For all estimands and datasets, you will need to include the following information in the submission filenames:</p>
+<p>For each dataset you analyze, you should create a separate CSV file containing estimates and, in the case of the <span class="math inline">\(\textrm{iCATE}, \textrm{sCATE},\)</span> <span class="math inline">\(\textrm{subCATE},\)</span> and <span class="math inline">\(\textrm{PATE}\)</span> evaluations, uncertainty intervals. Refer to the following sections for details about how to name and organize these files. For all estimands and datasets, you will need to include the following information in the submission filename:</p>
 <ul>
 <li><code>dataID</code>: dataset ID. Each dataset is stored in a file named something like <code>"data_dataID.csv"</code>, where <code>dataID</code> is a 4 digit number running from <code>0001</code> to <code>9000</code>.</li>
 <li><code>teamID</code>: a unique ID number assigned to each submission team. Team numbers will be assigned no later than April 1, 2026 by the organizers.</li>
 <li><code>submissionID</code>: if you enter multiple submissions, you will need to include a numeric id so that we can tell your submissions apart. See below for more details about multiple submissions.</li>
 </ul>
+<p>Please create a single compressed <code>.zip</code> or <code>.tar.gz</code> archive containing all your submission files, a README file containing a short, narrative description of your solution, and (optionally) reproducible code. The README file can be in plain-text, (R)Markdown, Quarto, or PDF file. Submissions without a README will not be considered for discussion at the ACIC meeting or in any follow-up article describing the competition. Your compressed archive should named <code>teamID_submissionID.zip</code> or <code>temaID_submission_ID.tar.gz</code>.</p>
 <section id="textrmicate-evaluations" class="level3">
 <h3 class="anchored" data-anchor-id="textrmicate-evaluations"><span class="math inline">\(\textrm{iCATE}\)</span> Evaluations</h3>
 <p>For each dataset, submit a single CSV file containing point estimates and uncertainty intervals for the individual conditional average treatment effect functions evaluated at each observed covariate vector. These outputs should be arranged in “long” format with the following five named columns:</p>
 <ul>
 <li>“ID”: the observation identifier (numeric)</li>
-<li>“z”: treatment arm (i.e., “B”, “C”, “D”, or “E”) (character)</li>
+<li>“z”: treatment arm (i.e., “b”, “c”, “d”, or “e”) that is being contrasted with “a”, the business as usual/control condition (character).</li>
 <li>“Estimate”: the point estimate for <span class="math inline">\(\textrm{iCATE}(\boldsymbol{\mathbf{x}}_{\textrm{ID}}, \textrm{z}).\)</span></li>
 <li>“L95”: the lower bound for a 95% uncertainty interval for the corresponding CATE evaluation</li>
 <li>“U95”: the upper bound for a 95% uncertainty interval for the corresponding CATE evaluation</li>
@@ -233,7 +241,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="textrmscate-evaluations"><span class="math inline">\(\textrm{sCATE}\)</span> Evaluations</h3>
 <p>For each dataset, submit a single CSV file containing point estimates and uncertainty intervals for the sample average conditional average treatment effect functions. These outputs should be arranged in “long” format with the following four named columns:</p>
 <ul>
-<li>“z”: treatment arm (i.e., “B”, “C”, “D”, or “E”) (character).</li>
+<li>“z”: treatment arm (i.e., “b”, “c”, “d”, or “e”) that is being contrasted with “a”, the business as usual/control condition (character).</li>
 <li>“Estimate”: the point estimate for <span class="math inline">\(\textrm{sCATE}(\textrm{z})\)</span> (numeric).</li>
 <li>“L95”: the lower bound for a 95% uncertainty interval for the corresponding CATE evaluation (numeric).</li>
 <li>“U95”: the upper bound for a 95% uncertainty interval for the corresponding CATE evaluation (numeric).</li>
@@ -244,7 +252,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="textrmsubcate-evaluations"><span class="math inline">\(\textrm{subCATE}\)</span> Evaluations</h3>
 <p>For each dataset, submit a single CSV file containing point estimates and uncertainty intervals for the average treatment effect within subgroups defined by <span class="math inline">\(X_{12} \in \{0,1\}\)</span> These outputs should be arranged in “long” format with the following named columns</p>
 <ul>
-<li>“z”: treatment arm (i.e., “B”, “C”, “D”, or “E”) (character)</li>
+<li>“z”: treatment arm (i.e., “b”, “c”, “d”, or “e”) that is being contrasted with “a”, the business as usual/control condition (character).</li>
 <li>“x”: the value of <span class="math inline">\(X_{12}\)</span> (i.e., 0 or 1) (numeric)</li>
 <li>“Estimate”: the point estimate for <span class="math inline">\(\textrm{subCATE}(\textrm{z}, x)\)</span> (numeric).</li>
 <li>“L95”: the lower bound for a 95% uncertainty interval for the corresponding GATE evaluation (numeric).</li>
@@ -256,8 +264,8 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="textrmpate-evaluations"><span class="math inline">\(\textrm{PATE}\)</span> Evaluations</h3>
 <p>For each dataset, submit a single CSV file containing point estimates and uncertainty intervals for the population average treatment effect. These outputs should be arranged into the following columns</p>
 <ul>
-<li>“z”: treatment arm (i.e., “B”, “C”, “D”, or “E”) (character)</li>
-<li>“Estimate”: the point estimate for <span class="math inline">\(\textrm{GATE}(\textrm{z}).\)</span> (numeric)</li>
+<li>“z”: treatment arm (i.e., “b”, “c”, “d”, or “e”) that is being contrasted with “a”, the business as usual/control condition (character)</li>
+<li>“Estimate”: the point estimate for <span class="math inline">\(\textrm{PATE}(\textrm{z}).\)</span> (numeric)</li>
 <li>“L95”: the lower bound for a 95% uncertainty interval for the corresponding GATE evaluation (numeric)</li>
 <li>“U95”: the upper bound for a 95% uncertainty interval for the corresponding GATE evaluation (numeric)</li>
 </ul>
@@ -265,10 +273,10 @@ window.Quarto = {
 </section>
 <section id="best-textrmicate" class="level3">
 <h3 class="anchored" data-anchor-id="best-textrmicate">Best <span class="math inline">\(\textrm{iCATE}\)</span></h3>
-<p>For each dataset, submit a single CSV file identifying the treatment arm that is most effective, on average, relative to <span class="math inline">\(A\)</span> for each observed individual These outputs should be arranged in “long” format with the following columns:</p>
+<p>For each dataset, submit a single CSV file identifying the treatment arm that is most effective, on average, relative to <span class="math inline">\(A\)</span> for each observed individual. These outputs should be arranged in “long” format with the following columns:</p>
 <ul>
 <li>“ID”: the observation identifier (numeric)</li>
-<li>“best_z”: treatment arm <span class="math inline">\(z\)</span> (i.e., “B”, “C”, “D”, or “E”) that maximizes <span class="math inline">\(\textrm{iCATE}(\boldsymbol{\mathbf{x}}_{\textrm{ID}}, z)\)</span> (character)</li>
+<li>“best_z”: treatment arm <span class="math inline">\(z\)</span> (i.e., “b”, “c”, “d”, or “e”) that maximizes <span class="math inline">\(\textrm{iCATE}(\boldsymbol{\mathbf{x}}_{\textrm{ID}}, z)\)</span> (character)</li>
 </ul>
 <p>The CSV file should be named <code>"BEST_iCATE_dataID_teamID_submissionID.csv"</code>. The dataset contains <span class="math inline">\(n\)</span> observations, the submission file should have <span class="math inline">\(n+1\)</span> rows (including the header/column names).</p>
 </section>
@@ -276,7 +284,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="best-textrmscate">Best <span class="math inline">\(\textrm{sCATE}\)</span></h3>
 <p>For each dataset, submit a single CSV file identifying the treatment arm that is most effective relative to A on average across the observed sample. These outputs should be arranged into the following columns:</p>
 <ul>
-<li>“best_z”: treatment arm <span class="math inline">\(z\)</span> (i.e., “B”, “C”, “D”, “E”) that maximizes <span class="math inline">\(\textrm{sCATE}(z)\)</span> (character).</li>
+<li>“best_z”: treatment arm <span class="math inline">\(z\)</span> (i.e., “b”, “c”, “d”, “e”) that maximizes <span class="math inline">\(\textrm{sCATE}(z)\)</span> (character).</li>
 </ul>
 <p>The CSV file should named <code>"BEST_sCATE_dataID_teamID_submissionID.csv"</code> and should contain 2 rows (including the header/column names).</p>
 </section>
@@ -297,9 +305,17 @@ window.Quarto = {
 </ul>
 <p>The CSV file should be named <code>"BEST_PATE_dataID_teamID_submission_ID.csv"</code> and should include 2 rows (including the header/column names).</p>
 <p>Examples of different submission files are available <a href="">here</a>.</p>
-
-
 </section>
+<section id="multiple-submissions" class="level3">
+<h3 class="anchored" data-anchor-id="multiple-submissions">Multiple Submissions</h3>
+<p>Each team is welcome to make up to 5 different submissions. Please be sure you explain how these submissions differ in your submitted README files.</p>
+</section>
+</section>
+<section id="questions-contact" class="level2">
+<h2 class="anchored" data-anchor-id="questions-contact">Questions &amp; Contact</h2>
+<p>If you have any questions, please do not hesitate to email us at acic2026datachallenge@gmail.com.</p>
+
+
 </section>
 
 </main> <!-- /main -->

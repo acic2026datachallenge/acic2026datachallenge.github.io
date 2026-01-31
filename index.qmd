@@ -6,20 +6,18 @@ format: html
 
 ## Introduction
 
-After a multi-year hiatus, we are excited to announce the return of the ACIC Data Challenge. 
+After a multiyear hiatus, we are excited to announce the return of the ACIC Data Challenge. 
 This year the challenge will focus on the complications that arise in situations with multiple treatments. 
 This will help us to understand how causal inference approaches handle the competing demands of settings with a wide variety of estimands. 
 What's the best approach to avoiding overconfidence in situations involving multiple, dependent comparisons? 
 Can the same method yield strong results for both ATEs and subgroup effects? 
 What are the tradeoffs between accurately estimating the effects of different treatments versus determining which of those treatments is most efficacious? 
-Do effect rankings suggest a different approach than accurate effect estimates? 
 We hope to address questions like these and more!
 
 In addition, a key goal this year is to create a more inclusive competition by lowering the barriers to entry with regard to computing power and level of automation. 
-To that end our datasets will be reasonably small (likely no more than 5000 observations). 
-Moreover, for those who prefer more curated approaches to causal inference we will provide opportunities to make submissions only for a core subset of datasets or estimands.
+To that end, our datasets will all be reasonably small and we provide an optional submission track for only 18 representative datasets.
 
-We will release the data on February 1, 2026. Submissions will be due on April 20, 2026.
+Submissions will be due on April 20, 2026.
 We will announce the results at ACIC in May!
 
 ## Data Background
@@ -27,10 +25,11 @@ We will announce the results at ACIC in May!
 For the Data Challenge, we have created 9000 different datasets, each of which was drawn from a distinct large population.
 These populations differ not only in terms of the treatment assignment probabilities but also in terms of the size of the treatment effects and the complexity/heterogeneity/functional form of the (conditional) average treatment effect functions. 
 However, you may assume that treatment was assigned completely at random within each population.
-So, standard assumptions of ignorability and overlap are satisfied as is the Stable Unit Treatment Value Assumption (SUTVA).
-Across all populations, you may assume that $A$ represents the control or "business as usual" condition and that $B, C, D, E$ represent different treatment arms. 
+So, standard assumptions of ignorability and overlap are satisfied.
+You may also assume that Stable Unit Treatment Value Assumption (SUTVA) is satisfied.
+Across all populations, you may assume that $a$ represents the control or "business as usual" condition and that $b, c, d, e$ represent different treatment arms. 
 
-Each dataset contains $n$ triplets $(\boldsymbol{\mathbf{x}}_{i}, z_{i}, y_{i})$ of $p = $ covariates $\boldsymbol{\mathbf{X}}$, treatment indicator $Z \in \{A, B, C, D, E\},$ and outcome $Y.$
+Each dataset contains $n$ triplets $(\boldsymbol{\mathbf{x}}_{i}, z_{i}, y_{i})$ of $p = $ covariates $\boldsymbol{\mathbf{X}}$, treatment indicator $Z \in \{a,b,c,d,e\},$ and outcome $Y.$
 You may assume that these triplets were drawn from a much larger population of size $N \gg n.$
 
 ### Covariates
@@ -41,34 +40,34 @@ You may assume that the distributions of the covariates are the same across all 
 
 ### Target Estimands
 
-Formally, each individual in the population has five potential outcomes $Y_{i}(A), Y_{i}(B), Y_{i}(C), Y_{i}(D), Y_{i}(E)$, out of which exactly one is observed: $y_{i} = Y_{i}(z_{i}).$
+Formally, each individual in the population has five potential outcomes $Y_{i}(a), Y_{i}(b), Y_{i}(c), Y_{i}(d), Y_{i}(e)$, out of which exactly one is observed: $y_{i} = Y_{i}(z_{i}).$
 We will be interested in estimating four types of average treatment effects.
-First, we would like to estimate for each observed individual in the sample $i = 1, \ldots, n,$ their individual-level conditional average treatment effect for each $z \in \{B, C, D, E\}$:
+First, we would like to estimate for each observed individual in the sample $i = 1, \ldots, n,$ their individual-level conditional average treatment effect for each $z \in \{b,c,d,e\}$:
 $$
-\textrm{iCATE}(\boldsymbol{\mathbf{x}}_{i}, z) = \mathbb{E}[Y_{i}(z) - Y_{i}(A) \vert \boldsymbol{\mathbf{X}} = \boldsymbol{\mathbf{x}}_{i}].
+\textrm{iCATE}(\boldsymbol{\mathbf{x}}_{i}, z) = \mathbb{E}[Y_{i}(z) - Y_{i}(a) \vert \boldsymbol{\mathbf{X}} = \boldsymbol{\mathbf{x}}_{i}].
 $$
-The second type of effect is the sample average conditional average treatment effect for each $z \in \{B, C, D ,E\}.$
+The second type of effect is the sample-level conditional average treatment effect for each $z \in \{b,c,d,e\}.$
 $$
-\textrm{sCATE}(z) = n^{-1}\sum_{i = 1}^{n}{\mathbb{E}[Y_{i}(z) - Y_{i}(A) \vert \boldsymbol{\mathbf{X}} = \boldsymbol{\mathbf{x}}_{i}]}.
-$$
-
-The third type of effect is the sample average conditional treatment effect within subgroups defined by the value of $X_{12} \in \{0,1\}$ for each $z \in \{B,C,D,E\}$:
-$$
-\textrm{subCATE}(z,x) = n^{-1}\sum_{i=1}^{n}{\mathbb{E}[Y_{i}(z) - Y_{i}(A) \vert \boldsymbol{\mathbf{X}} = \boldsymbol{\mathbf{x}}_{i}] \times \mathbf{1}(x_{i,12} = x)}.
-$$
-The fourth effect is the population conditional average treatment effect for each $z \in \{B,C,D,E\}$:
-$$
-\textrm{pCATE}(z) = N^{-1}\sum_{i = 1}^{N}{\mathbb{E}[Y_{i}(z) - Y_{i}(A) \vert \boldsymbol{\mathbf{X}} = \boldsymbol{\mathbf{x}}_{i}]}.
+\textrm{sCATE}(z) = n^{-1}\sum_{i = 1}^{n}{\mathbb{E}[Y_{i}(z) - Y_{i}(a) \vert \boldsymbol{\mathbf{X}} = \boldsymbol{\mathbf{x}}_{i}]}.
 $$
 
+The third type of effect is the subgroup-specific sample-level conditional average treatment effect within subgroups defined by the value of $X_{12} \in \{0,1\}$ for each $z \in \{B,C,D,E\}$:
+$$
+\textrm{subCATE}(z,x) = n^{-1}\sum_{i=1}^{n}{\mathbb{E}[Y_{i}(z) - Y_{i}(a) \vert \boldsymbol{\mathbf{X}} = \boldsymbol{\mathbf{x}}_{i}] \times \mathbf{1}(x_{i,12} = x)}.
+$$
+The fourth effect is the population average treatment effect for each $z \in \{B,C,D,E\}$:
+$$
+\textrm{PATE}(z) = N^{-1}\sum_{i = 1}^{N}{Y_{i}(z) - Y_{i}(a)}.
+$$
 
-In addition to computing point estimates and pointwise uncertainty intervals for each of these effects, we are interested in determining which treatment is most effective relative to A, where positive treatment effect values are considered better/more effective than negative values. 
+
+In addition to computing point estimates and pointwise uncertainty intervals for each of these effects, we are interested in determining which treatment is most effective relative to  $a$, where positive treatment effect values are considered better/more effective than negative values. 
 Specifically, we wish to compute the most effective treatment for
 
   * Each individual $i = 1, \ldots, n$ in the sample: $\boldsymbol{\mathbf{x}}$, $\textrm{argmax}_{z} \textrm{iCATE}(\boldsymbol{\mathbf{x}}_{i}, z).$
   * On average, across the observed sample:$\textrm{argmax}_{z} \textrm{sCATE}(z)$
   * On average, across the observed sample, within each subgroup defined by$X_{12} \in \{0,1\}:$ $\textrm{argmax}_{z} \textrm{subCATE}(z,x).$
-  * On average, across the whole population: $\textrm{argmax}_{z} \textrm{pCATE}(z).$
+  * On average, across the whole population: $\textrm{argmax}_{z} \textrm{PATE}(z).$
 
 ## Registration & Competition Timing
 
@@ -76,18 +75,27 @@ To participate in the competition at least one participant of every team needs t
 Please register for the challenge **by April 1, 2026** using this [form](https://docs.google.com/forms/d/e/1FAIpQLSe9I5Co3ngnBD-snMdbW8f27ngbezh-t_gPI44ii-66cRwcbg/viewform?usp=sharing&ouid=105756037255954774746). 
 Registration will provide you access to the data and allow us to assign you a team number (up to 5 submissions per team).
 
+We will host two submission tracks:
 
-
+  * Curated: this track focuses on 18 datasets that are representative of the challenges created for this competition
+  * The Works: Submit results for all 9000 datasets. 
 
 ## Preparing Your Submission
 
-For each dataset, you will submit a separate CSV file containing estimates and, in the case of the $\textrm{CATE}, \textrm{GATE},$ and $\textrm{PATE}$ evaluations, uncertainty intervals. 
+For each dataset you analyze, you should create a separate CSV file containing estimates and, in the case of the $\textrm{iCATE}, \textrm{sCATE},$ $\textrm{subCATE},$ and $\textrm{PATE}$ evaluations, uncertainty intervals. 
 Refer to the following sections for details about how to name and organize these files.
-For all estimands and datasets, you will need to include the following information in the submission filenames:
+For all estimands and datasets, you will need to include the following information in the submission filename:
 
   * `dataID`: dataset ID. Each dataset is stored in a file named something like `"data_dataID.csv"`, where `dataID` is a 4 digit number running from `0001` to `9000`. 
   * `teamID`: a unique ID number assigned to each submission team. Team numbers will be assigned no later than April 1, 2026 by the organizers. 
   * `submissionID`: if you enter multiple submissions, you will need to include a numeric id so that we can tell your submissions apart. See below for more details about multiple submissions.
+
+
+Please create a single compressed `.zip` or `.tar.gz` archive containing all your submission files, a README file containing a short, narrative description of your solution, and (optionally) reproducible code. 
+The README file can be in plain-text, (R)Markdown, Quarto, or PDF file. 
+Submissions without a README will not be considered for discussion at the ACIC meeting or in any follow-up article describing the competition.
+Your compressed archive should named `teamID_submissionID.zip` or `temaID_submission_ID.tar.gz`.
+
 
 ### $\textrm{iCATE}$ Evaluations
 
@@ -95,7 +103,7 @@ For each dataset, submit a single CSV file containing point estimates and uncert
 These outputs should be arranged in "long" format with the following five named columns:
 
   * "ID": the observation identifier (numeric)
-  * "z": treatment arm (i.e., "B", "C", "D", or "E") (character)
+  * "z": treatment arm (i.e., "b", "c", "d", or "e") that is being contrasted with "a", the business as usual/control condition (character).
   * "Estimate": the point estimate for $\textrm{iCATE}(\boldsymbol{\mathbf{x}}_{\textrm{ID}}, \textrm{z}).$
   * "L95": the lower bound for a 95% uncertainty interval for the corresponding CATE evaluation
   * "U95": the upper bound for a 95% uncertainty interval for the corresponding CATE evaluation
@@ -108,7 +116,7 @@ If the dataset contains $n$ observations, this file should contain $4n + 1$ rows
 For each dataset, submit a single CSV file containing point estimates and uncertainty intervals for the sample average conditional average treatment effect functions.
 These outputs should be arranged in "long" format with the following four named columns:
 
-  * "z": treatment arm (i.e., "B", "C", "D", or "E") (character).
+  * "z": treatment arm (i.e., "b", "c", "d", or "e") that is being contrasted with "a", the business as usual/control condition (character).
   * "Estimate": the point estimate for $\textrm{sCATE}(\textrm{z})$ (numeric). 
   * "L95": the lower bound for a 95% uncertainty interval for the corresponding CATE evaluation (numeric).
   * "U95": the upper bound for a 95% uncertainty interval for the corresponding CATE evaluation (numeric).
@@ -121,7 +129,7 @@ The CSV file should be named `"sCATE_dataID_teamID_submissionID.csv"` and should
 For each dataset, submit a single CSV file containing point estimates and uncertainty intervals for the average treatment effect within subgroups defined by $X_{12} \in \{0,1\}$
 These outputs should be arranged in "long" format with the following named columns
 
-  * "z": treatment arm (i.e., "B", "C", "D", or "E") (character)
+  * "z": treatment arm (i.e., "b", "c", "d", or "e") that is being contrasted with "a", the business as usual/control condition (character).
   * "x": the value of $X_{12}$ (i.e., 0 or 1) (numeric)
   * "Estimate": the point estimate for $\textrm{subCATE}(\textrm{z}, x)$ (numeric).
   * "L95": the lower bound for a 95% uncertainty interval for the corresponding GATE evaluation (numeric).
@@ -134,8 +142,8 @@ The CSV file should be named `"subCATE_dataID_teamID_submissionID.csv"` and shou
 For each dataset, submit a single CSV file containing point estimates and uncertainty intervals for the population average treatment effect.
 These outputs should be arranged into the following columns
 
-  * "z": treatment arm (i.e., "B", "C", "D", or "E") (character)
-  * "Estimate": the point estimate for $\textrm{GATE}(\textrm{z}).$ (numeric)
+  * "z": treatment arm (i.e., "b", "c", "d", or "e") that is being contrasted with "a", the business as usual/control condition (character)
+  * "Estimate": the point estimate for $\textrm{PATE}(\textrm{z}).$ (numeric)
   * "L95": the lower bound for a 95% uncertainty interval for the corresponding GATE evaluation (numeric)
   * "U95": the upper bound for a 95% uncertainty interval for the corresponding GATE evaluation (numeric)
 
@@ -143,11 +151,11 @@ The CSV file should be named `"PATE_dataID_teamID_submissionID.csv"` and should 
 
 ### Best $\textrm{iCATE}$
 
-For each dataset, submit a single CSV file identifying the treatment arm that is most effective, on average, relative to $A$ for each observed individual
+For each dataset, submit a single CSV file identifying the treatment arm that is most effective, on average, relative to $A$ for each observed individual.
 These outputs should be arranged in "long" format with the following columns:
 
   * "ID": the observation identifier (numeric)
-  * "best_z": treatment arm $z$ (i.e., "B", "C", "D", or "E") that maximizes $\textrm{iCATE}(\boldsymbol{\mathbf{x}}_{\textrm{ID}}, z)$ (character)
+  * "best_z": treatment arm $z$ (i.e., "b", "c", "d", or "e") that maximizes $\textrm{iCATE}(\boldsymbol{\mathbf{x}}_{\textrm{ID}}, z)$ (character)
 
 The CSV file should be named `"BEST_iCATE_dataID_teamID_submissionID.csv"`.
 The dataset contains $n$ observations, the submission file should have $n+1$ rows (including the header/column names).
@@ -157,7 +165,7 @@ The dataset contains $n$ observations, the submission file should have $n+1$ row
 For each dataset, submit a single CSV file identifying the treatment arm that is most effective relative to A on average across the observed sample.
 These outputs should be arranged into the following columns:
 
-  * "best_z": treatment arm $z$ (i.e., "B", "C", "D", "E") that maximizes $\textrm{sCATE}(z)$ (character).
+  * "best_z": treatment arm $z$ (i.e., "b", "c", "d", "e") that maximizes $\textrm{sCATE}(z)$ (character).
 
 The CSV file should named `"BEST_sCATE_dataID_teamID_submissionID.csv"` and should contain 2 rows (including the header/column names).
 
@@ -181,3 +189,14 @@ These outputs should be arranged in "long" format with the following columns:
 The CSV file should be named `"BEST_PATE_dataID_teamID_submission_ID.csv"` and should include 2 rows (including the header/column names).
 
 Examples of different submission files are available [here]().
+
+### Multiple Submissions
+
+Each team is welcome to make up to 5 different submissions.
+Please be sure you explain how these submissions differ in your submitted README files.
+
+## Questions & Contact
+
+If you have any questions, please do not hesitate to email us at acic2026datachallenge@gmail.com.
+
+
