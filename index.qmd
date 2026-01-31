@@ -179,12 +179,12 @@ These outputs should be arranged in "long" format with the following columns:
 
 The CSV file should be named `"BEST_subCATE_dataID_teamID_submission_ID.csv"` and should include 2 rows (including the header/column names).
 
-### Best $\textrm{pCATE}$
+### Best $\textrm{PATE}$
 
 For each dataset, submit a single CSV file identifying the treatment arm that is most effective relative to $A$ averaged across the whole population.
 These outputs should be arranged in "long" format with the following columns:
 
-  * "best_z": treatment arm $z$ (i.e., "B", "C", "D", or "E") that maximizes $\textrm{pCATE}(z)$ (character)
+  * "best_z": treatment arm $z$ (i.e., "B", "C", "D", or "E") that maximizes $\textrm{PATE}(z)$ (character)
 
 The CSV file should be named `"BEST_PATE_dataID_teamID_submission_ID.csv"` and should include 2 rows (including the header/column names).
 
