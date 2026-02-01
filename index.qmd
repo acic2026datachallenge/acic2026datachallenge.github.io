@@ -188,7 +188,6 @@ These outputs should be arranged in "long" format with the following columns:
 
 The CSV file should be named `"BEST_PATE_dataID_teamID_submission_ID.csv"` and should include 2 rows (including the header/column names).
 
-Examples of different submission files are available [here]().
 
 ### Multiple Submissions
 
