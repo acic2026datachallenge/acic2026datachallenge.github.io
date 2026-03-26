@@ -53,7 +53,7 @@ $$
 
 The third type of effect is the subgroup-specific sample-level conditional average treatment effect within subgroups defined by the value of $X_{12} \in \{0,1\}$ for each $z \in \{B,C,D,E\}$:
 $$
-\textrm{subCATE}(z,x) = n^{-1}\sum_{i=1}^{n}{\mathbb{E}[Y_{i}(z) - Y_{i}(a) \vert \boldsymbol{\mathbf{X}} = \boldsymbol{\mathbf{x}}_{i}] \times \mathbf{1}(x_{i,12} = x)}.
+\textrm{subCATE}(z,x) = \left[\sum_{i = 1}^{n}{\mathbf{1}(x_{i,12}= x)}\right]^{-1} \times \sum_{i=1}^{n}{\left[\mathbb{E}[Y_{i}(z) - Y_{i}(a) \vert \boldsymbol{\mathbf{X}} = \boldsymbol{\mathbf{x}}_{i}] \times \mathbf{1}(x_{i,12} = x)\right]}.
 $$
 The fourth effect is the population average treatment effect for each $z \in \{B,C,D,E\}$:
 $$
@@ -177,7 +177,7 @@ These outputs should be arranged in "long" format with the following columns:
   * "x": the value of $X_{12}$ (i.e., 0 or 1) (numeric).
   * "best_z": treatment arm $z$ (i.e., "B", "C", "D", or "E") that maximizes $\textrm{subCATE}(z,x)$ (character).
 
-The CSV file should be named `"BEST_subCATE_dataID_teamID_submission_ID.csv"` and should include 2 rows (including the header/column names).
+The CSV file should be named `"BEST_subCATE_dataID_teamID_submissionID.csv"` and should include 3 rows (including the header/column names).
 
 ### Best $\textrm{PATE}$
 
@@ -186,7 +186,7 @@ These outputs should be arranged in "long" format with the following columns:
 
   * "best_z": treatment arm $z$ (i.e., "B", "C", "D", or "E") that maximizes $\textrm{PATE}(z)$ (character)
 
-The CSV file should be named `"BEST_PATE_dataID_teamID_submission_ID.csv"` and should include 2 rows (including the header/column names).
+The CSV file should be named `"BEST_PATE_dataID_teamID_submissionID.csv"` and should include 2 rows (including the header/column names).
 
 
 ### Multiple Submissions
