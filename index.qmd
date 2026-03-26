@@ -91,7 +91,7 @@ For all estimands and datasets, you will need to include the following informati
   * `submissionID`: if you enter multiple submissions, you will need to include a numeric id so that we can tell your submissions apart. See below for more details about multiple submissions.
 
 
-Please create a single compressed `.zip` or `.tar.gz` archive containing all your submission files, a README file containing a short, narrative description of your solution, and (optionally) reproducible code. 
+Please create a single compressed `.zip` or `.tar.gz` archive containing all your submission files, a README file containing a short, narrative description of your solution, and reproducible code. 
 The README file can be in plain-text, (R)Markdown, Quarto, or PDF file. 
 Submissions without a README will not be considered for discussion at the ACIC meeting or in any follow-up article describing the competition.
 Your compressed archive should named `teamID_submissionID.zip` or `temaID_submission_ID.tar.gz`.
