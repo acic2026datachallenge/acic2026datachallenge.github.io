@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.7.31">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -36,7 +36,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-d6bf66eab951e3e2facc2c9e15467c3e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -194,7 +194,7 @@ window.Quarto = {
 \textrm{sCATE}(z) = n^{-1}\sum_{i = 1}^{n}{\mathbb{E}[Y_{i}(z) - Y_{i}(a) \vert \boldsymbol{\mathbf{X}} = \boldsymbol{\mathbf{x}}_{i}]}.
 \]</span></p>
 <p>The third type of effect is the subgroup-specific sample-level conditional average treatment effect within subgroups defined by the value of <span class="math inline">\(X_{12} \in \{0,1\}\)</span> for each <span class="math inline">\(z \in \{B,C,D,E\}\)</span>: <span class="math display">\[
-\textrm{subCATE}(z,x) = n^{-1}\sum_{i=1}^{n}{\mathbb{E}[Y_{i}(z) - Y_{i}(a) \vert \boldsymbol{\mathbf{X}} = \boldsymbol{\mathbf{x}}_{i}] \times \mathbf{1}(x_{i,12} = x)}.
+\textrm{subCATE}(z,x) = \left[\sum_{i = 1}^{n}{\mathbf{1}(x_{i,12}= x)}\right]^{-1} \times \sum_{i=1}^{n}{\left[\mathbb{E}[Y_{i}(z) - Y_{i}(a) \vert \boldsymbol{\mathbf{X}} = \boldsymbol{\mathbf{x}}_{i}] \times \mathbf{1}(x_{i,12} = x)\right]}.
 \]</span> The fourth effect is the population average treatment effect for each <span class="math inline">\(z \in \{B,C,D,E\}\)</span>: <span class="math display">\[
 \textrm{PATE}(z) = N^{-1}\sum_{i = 1}^{N}{Y_{i}(z) - Y_{i}(a)}.
 \]</span></p>
@@ -295,7 +295,7 @@ window.Quarto = {
 <li>“x”: the value of <span class="math inline">\(X_{12}\)</span> (i.e., 0 or 1) (numeric).</li>
 <li>“best_z”: treatment arm <span class="math inline">\(z\)</span> (i.e., “B”, “C”, “D”, or “E”) that maximizes <span class="math inline">\(\textrm{subCATE}(z,x)\)</span> (character).</li>
 </ul>
-<p>The CSV file should be named <code>"BEST_subCATE_dataID_teamID_submission_ID.csv"</code> and should include 2 rows (including the header/column names).</p>
+<p>The CSV file should be named <code>"BEST_subCATE_dataID_teamID_submissionID.csv"</code> and should include 3 rows (including the header/column names).</p>
 </section>
 <section id="best-textrmpate" class="level3">
 <h3 class="anchored" data-anchor-id="best-textrmpate">Best <span class="math inline">\(\textrm{PATE}\)</span></h3>
@@ -303,7 +303,7 @@ window.Quarto = {
 <ul>
 <li>“best_z”: treatment arm <span class="math inline">\(z\)</span> (i.e., “B”, “C”, “D”, or “E”) that maximizes <span class="math inline">\(\textrm{PATE}(z)\)</span> (character)</li>
 </ul>
-<p>The CSV file should be named <code>"BEST_PATE_dataID_teamID_submission_ID.csv"</code> and should include 2 rows (including the header/column names).</p>
+<p>The CSV file should be named <code>"BEST_PATE_dataID_teamID_submissionID.csv"</code> and should include 2 rows (including the header/column names).</p>
 </section>
 <section id="multiple-submissions" class="level3">
 <h3 class="anchored" data-anchor-id="multiple-submissions">Multiple Submissions</h3>
