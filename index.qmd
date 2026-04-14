@@ -194,7 +194,48 @@ The CSV file should be named `"BEST_PATE_dataID_teamID_submissionID.csv"` and sh
 Each team is welcome to make up to 5 different submissions.
 Please be sure you explain how these submissions differ in your submitted README files.
 
-## Questions & Contact
+
+## Frequently Asked Questions
+
+#### What evaluation criteria will be used
+
+We will compute relatively standard metrics (e.g., uncertainty interval coverage and width, bias and square errors for point estimates, etc.).
+
+#### How will you construct a single ranking of methods/submission?
+
+
+Since different methods perform differently on different tasks, we will not attempt to construct a single ranking of submissions. Instead, we will report how each submission performs according to each evaluation metric. 
+
+#### Can we assume that each dataset was drawn uniformly at random from its respective population?
+
+Yes, each dataset was drawn uniformly from its respective population.
+
+#### Do we need to compute all estimands for all of the datasets?
+
+Our hope is that you submit estimates for all estimands for all datasets! We understand, however, that (i) certain methods may not be designed for estimating certain estimands and (ii) it may be prohibitive to analyze all the datasets. So, please submit what you can and include a short explanation in the README of your submission.
+
+#### Are the individual datasets drawn from distinct populations or one large population?
+
+Each dataset is drawn from its own respective population. However, the marginal distribution of $X$ is the same across all populations and, because the treatment is randomized, the marginal distribution of $Z$ is the same across all populations. Only the conditional distributions of $Y \vert X , Z$ differ across populations.
+
+#### Are there any mediators or post-outcome variables?
+
+No. You may assume that all $X$’s were measured before treatment was assigned and administered.
+
+#### Are all the $X_{j}$’s confounders?
+
+Recall that the treatment $Z$ was **randomly** assigned. So, there are no confounders. 
+However, some of the $X$’s may modify the effect of the treatment relative to the business as usual/control condition.
+
+#### Are there any restrictions on generative AI usage?
+
+We welcome the use of generative AI for this challenge! We only ask that you provide a description of how you used generative AI in your submission README and (ii) reproducible analysis code.
+
+#### Will you provide feedback on individual submissions?
+
+No. After the submission window closes on April 20, we will evaluate each submission and report the results of the Data Challenge at the [ACIC Meeting in May 2026](https://sci-info.org/2026-meeting-2/).
+
+## Contact
 
 If you have any questions, please do not hesitate to email us at acic2026datachallenge@gmail.com.
 

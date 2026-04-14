@@ -146,7 +146,8 @@ window.Quarto = {
   <li><a href="#best-textrmpate" id="toc-best-textrmpate" class="nav-link" data-scroll-target="#best-textrmpate">Best <span class="math inline">\(\textrm{PATE}\)</span></a></li>
   <li><a href="#multiple-submissions" id="toc-multiple-submissions" class="nav-link" data-scroll-target="#multiple-submissions">Multiple Submissions</a></li>
   </ul></li>
-  <li><a href="#questions-contact" id="toc-questions-contact" class="nav-link" data-scroll-target="#questions-contact">Questions &amp; Contact</a></li>
+  <li><a href="#frequently-asked-questions" id="toc-frequently-asked-questions" class="nav-link" data-scroll-target="#frequently-asked-questions">Frequently Asked Questions</a></li>
+  <li><a href="#contact" id="toc-contact" class="nav-link" data-scroll-target="#contact">Contact</a></li>
   </ul>
 </nav>
     </div>
@@ -310,8 +311,47 @@ window.Quarto = {
 <p>Each team is welcome to make up to 5 different submissions. Please be sure you explain how these submissions differ in your submitted README files.</p>
 </section>
 </section>
-<section id="questions-contact" class="level2">
-<h2 class="anchored" data-anchor-id="questions-contact">Questions &amp; Contact</h2>
+<section id="frequently-asked-questions" class="level2">
+<h2 class="anchored" data-anchor-id="frequently-asked-questions">Frequently Asked Questions</h2>
+<section id="what-evaluation-criteria-will-be-used" class="level4">
+<h4 class="anchored" data-anchor-id="what-evaluation-criteria-will-be-used">What evaluation criteria will be used</h4>
+<p>We will compute relatively standard metrics (e.g., uncertainty interval coverage and width, bias and square errors for point estimates, etc.).</p>
+</section>
+<section id="how-will-you-construct-a-single-ranking-of-methodssubmission" class="level4">
+<h4 class="anchored" data-anchor-id="how-will-you-construct-a-single-ranking-of-methodssubmission">How will you construct a single ranking of methods/submission?</h4>
+<p>Since different methods perform differently on different tasks, we will not attempt to construct a single ranking of submissions. Instead, we will report how each submission performs according to each evaluation metric.</p>
+</section>
+<section id="can-we-assume-that-each-dataset-was-drawn-uniformly-at-random-from-its-respective-population" class="level4">
+<h4 class="anchored" data-anchor-id="can-we-assume-that-each-dataset-was-drawn-uniformly-at-random-from-its-respective-population">Can we assume that each dataset was drawn uniformly at random from its respective population?</h4>
+<p>Yes, each dataset was drawn uniformly from its respective population.</p>
+</section>
+<section id="do-we-need-to-compute-all-estimands-for-all-of-the-datasets" class="level4">
+<h4 class="anchored" data-anchor-id="do-we-need-to-compute-all-estimands-for-all-of-the-datasets">Do we need to compute all estimands for all of the datasets?</h4>
+<p>Our hope is that you submit estimates for all estimands for all datasets! We understand, however, that (i) certain methods may not be designed for estimating certain estimands and (ii) it may be prohibitive to analyze all the datasets. So, please submit what you can and include a short explanation in the README of your submission.</p>
+</section>
+<section id="are-the-individual-datasets-drawn-from-distinct-populations-or-one-large-population" class="level4">
+<h4 class="anchored" data-anchor-id="are-the-individual-datasets-drawn-from-distinct-populations-or-one-large-population">Are the individual datasets drawn from distinct populations or one large population?</h4>
+<p>Each dataset is drawn from its own respective population. However, the marginal distribution of <span class="math inline">\(X\)</span> is the same across all populations and, because the treatment is randomized, the marginal distribution of <span class="math inline">\(Z\)</span> is the same across all populations. Only the conditional distributions of <span class="math inline">\(Y \vert X , Z\)</span> differ across populations.</p>
+</section>
+<section id="are-there-any-mediators-or-post-outcome-variables" class="level4">
+<h4 class="anchored" data-anchor-id="are-there-any-mediators-or-post-outcome-variables">Are there any mediators or post-outcome variables?</h4>
+<p>No.&nbsp;You may assume that all <span class="math inline">\(X\)</span>’s were measured before treatment was assigned and administered.</p>
+</section>
+<section id="are-all-the-x_js-confounders" class="level4">
+<h4 class="anchored" data-anchor-id="are-all-the-x_js-confounders">Are all the <span class="math inline">\(X_{j}\)</span>’s confounders?</h4>
+<p>Recall that the treatment <span class="math inline">\(Z\)</span> was <strong>randomly</strong> assigned. So, there are no confounders. However, some of the <span class="math inline">\(X\)</span>’s may modify the effect of the treatment relative to the business as usual/control condition.</p>
+</section>
+<section id="are-there-any-restrictions-on-generative-ai-usage" class="level4">
+<h4 class="anchored" data-anchor-id="are-there-any-restrictions-on-generative-ai-usage">Are there any restrictions on generative AI usage?</h4>
+<p>We welcome the use of generative AI for this challenge! We only ask that you provide a description of how you used generative AI in your submission README and (ii) reproducible analysis code.</p>
+</section>
+<section id="will-you-provide-feedback-on-individual-submissions" class="level4">
+<h4 class="anchored" data-anchor-id="will-you-provide-feedback-on-individual-submissions">Will you provide feedback on individual submissions?</h4>
+<p>No.&nbsp;After the submission window closes on April 20, we will evaluate each submission and report the results of the Data Challenge at the <a href="https://sci-info.org/2026-meeting-2/">ACIC Meeting in May 2026</a>.</p>
+</section>
+</section>
+<section id="contact" class="level2">
+<h2 class="anchored" data-anchor-id="contact">Contact</h2>
 <p>If you have any questions, please do not hesitate to email us at acic2026datachallenge@gmail.com.</p>
 
 
