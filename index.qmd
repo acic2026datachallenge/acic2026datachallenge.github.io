@@ -235,6 +235,16 @@ We welcome the use of generative AI for this challenge! We only ask that you pro
 
 No. After the submission window closes on April 20, we will evaluate each submission and report the results of the Data Challenge at the [ACIC Meeting in May 2026](https://sci-info.org/2026-meeting-2/).
 
+
+## Preliminary Results
+
+A copy of the preliminary results, which were presented at the 2026 ACIC Conference, are below.
+
+<body>
+    <iframe src="acic_presentation.pdf" width="100%" height="475px" style="position: relative;z-index: 9999999;">
+    </iframe>
+</body>
+
 ## Contact
 
 If you have any questions, please do not hesitate to email us at acic2026datachallenge@gmail.com.
